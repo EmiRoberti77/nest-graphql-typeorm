@@ -16,8 +16,13 @@ type Pet {
   owner: Owner!
 }
 
-type Query {
+type PaginatedPets {
   pets: [Pet!]!
+  total: Float!
+}
+
+type Query {
+  pets(page: Int! = 1, limit: Int! = 1): PaginatedPets!
   getPetById(id: Int!): Pet!
   owners: [Owner!]!
   owner(id: Int!): Owner!

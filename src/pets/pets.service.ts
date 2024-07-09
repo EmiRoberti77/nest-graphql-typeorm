@@ -22,8 +22,19 @@ export class PetsService {
     return await this.petsRepository.findOneByOrFail({ id });
   }
 
-  async findAll(): Promise<Pet[]> {
-    return this.petsRepository.find(); //select * from
+  async findAll(
+    page: number = 1,
+    limit: number = 3,
+  ): Promise<{ pets: Pet[]; total: number }> {
+    const [pets, total] = await this.petsRepository.findAndCount({
+      skip: (page - 1) * limit,
+      take: limit,
+    });
+
+    return {
+      pets,
+      total,
+    };
   }
 
   async getOwner(id: number): Promise<Owner> {

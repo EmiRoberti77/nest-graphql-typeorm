@@ -11,14 +11,18 @@ import { PetsService } from './pets.service';
 import { Pet } from './pet.entity';
 import { CreatePetInput } from './dto/create-pet.input';
 import { Owner } from 'src/owners/entities/owner.entity';
+import { PaginatedPets } from './paginatedPets.entity';
 
 @Resolver((of) => Pet)
 export class PetsResolver {
   constructor(private petsService: PetsService) {}
 
-  @Query((returns) => [Pet])
-  async pets(): Promise<Pet[]> {
-    return await this.petsService.findAll();
+  @Query((returns) => PaginatedPets)
+  async pets(
+    @Args('page', { type: () => Int, defaultValue: 1 }) page: number,
+    @Args('limit', { type: () => Int, defaultValue: 1 }) limit: number,
+  ): Promise<PaginatedPets> {
+    return await this.petsService.findAll(page, limit);
   }
 
   @Query((returns) => Pet)

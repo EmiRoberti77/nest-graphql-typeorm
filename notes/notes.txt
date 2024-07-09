@@ -1,3 +1,9 @@
 NestJS GraphQL
-
 https://www.youtube.com/watch?v=geYvdbpo3cA
+
+
+Pagination nest GraphQL mongoDB
+https://www.youtube.com/watch?v=y-jBHopmW40
+https://www.squash.io/implementing-typeorm-with-graphql-and-nestjs/
+https://docs.nestjs.com/graphql/resolvers
+https://stackoverflow.com/questions/70108473/pagination-in-typeorm-nestjs
